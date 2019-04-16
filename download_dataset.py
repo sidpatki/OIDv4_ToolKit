@@ -1,9 +1,14 @@
-# ---------------
-# Date: 7/19/2018
-# Place: Biella/Torino
-# Author: EscVM & TArt
-# Project: OID v4
-# ---------------
+# lines added by siddharth to remove ros opencv from environment for running this project
+import sys;
+
+print(sys.path);
+
+ros_path = '/opt/ros/kinetic/lib/python2.7/dist-packages'
+
+if ros_path in sys.path:
+    sys.path.remove(ros_path)
+
+print(sys.path);
 
 """
 OID v4 Downloader

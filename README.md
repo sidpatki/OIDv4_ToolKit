@@ -1,4 +1,22 @@
-# OIDv4 ToolKit for Object Detection
+# OIDv4 ToolKit for Object Detection : Forked by Sid
+
+This forked version allows the toolkit to work in ROS workspace, and download specific classes and convert annotations to YOLO compatible format.
+
+#### To clone this fork:
+```
+git clone https://github.com/sidpatki/OIDv4_ToolKit.git
+```
+
+#### run this:
+```
+pip3 install -r requirements.txt
+```
+
+#### to download a classes in separate directories run:
+```
+python3 download_dataset.py downloader --classes classes_to_download.txt --type_csv train --image_IsGroupOf 0
+```
+
 
 Do you want to build your personal object detector but you don't have enough images to train your model? Have you already discovered [Open Images Dataset v4](https://storage.googleapis.com/openimages/web/index.html) that has [600](https://storage.googleapis.com/openimages/2018_04/bbox_labels_600_hierarchy_visualizer/circle.html) classes and more than 1,700,000 images ready to use? Do you want to exploit it for your projects but you don't want to download more than 500 GB of data!?
 
@@ -51,13 +69,13 @@ Python3 is required.
 Peek inside the requirements file if you have everything already installed. Most of the dependencies are common libraries.
 
 ## Launch the ToolKit to check the available options
-First of all, if you simply want a quick reminder of al the possible options given by the script, you can simply launch, from your console of choice, the [main.py](main.py). Remember to point always at the main directory of the project
+First of all, if you simply want a quick reminder of al the possible options given by the script, you can simply launch, from your console of choice, the [download_dataset.py](download_dataset.py). Remember to point always at the main directory of the project
    ```bash
-   python3 main.py
+   python3 download_dataset.py
    ```
 or in the following way to get more information
    ```bash
-   python3 main.py -h
+   python3 download_dataset.py -h
    ```
 
 # Use the ToolKit to download
@@ -76,13 +94,13 @@ Example: `Polar_bear`.
 
 Let's for example download Apples and Oranges from the validation set. In this case we have to use the following command.
   ```bash
-   python3 main.py downloader --classes Apple Orange --type_csv validation
+   python3 download_dataset.py downloader --classes Apple Orange --type_csv validation
    ```
 The algorith will take care to download all the necessary files and build the directory structure like this:
 
 ```
 main_folder
-│   main.py
+│   download_dataset.py
 │
 └───OID
     │   file011.txt
@@ -133,7 +151,7 @@ This option allows to download more classes, but in a common folder. Also the re
 
 Again if we want to download Apple and Oranges, but in a common folder
   ```bash
-   python3 main.py downloader --classes Apple Orange --type_csv validation --multiclasses 1
+   python3 download_dataset.py downloader --classes Apple Orange --type_csv validation --multiclasses 1
    ```
 
 ### Annotations
@@ -163,19 +181,19 @@ The annotations of the dataset has been marked with a bunch of boolean values. T
 Naturally, the ToolKit provides the same options as paramenters in order to filter the downloaded images.
 For example, with:
   ```bash
-   python3 main.py downloader --classes Apple Orange --type_csv validation --image_IsGroupOf 0
+   python3 download_dataset.py downloader --classes Apple Orange --type_csv validation --image_IsGroupOf 0
    ```
 only images without group annotations are downloaded.
 
 # Use the ToolKit to visualize the labeled images
 The ToolKit is useful also for visualize the downloaded images with the respective labels.
 ```bash
-   python3 main.py visualizer
+   python3 download_dataset.py visualizer
    ```
   In this way the default `Dataset` folder will be pointed to search the images and labels automatically. To point
   another folder it's possible to use `--Dataset` optional argument.
 ```bash
-   python3 main.py visualizer --Dataset desired_folder
+   python3 download_dataset.py visualizer --Dataset desired_folder
    ```
 Then the system will ask you which folder to visualize (train, validation or test) and the desired class.
 Hence with `d` (next), `a` (previous) and `q` (exit) you will be able to explore all the images. Follow the menu for all the other options.
@@ -187,10 +205,10 @@ Hence with `d` (next), `a` (previous) and `q` (exit) you will be able to explore
 # Download images from Image-Level Labels Dataset
 The Toolkit is now able to acess also to the huge dataset without bounding boxes. This dataset is formed by 19,995 classes and it's already divided into train, validation and test. The command used for the download from this dataset is ```downloader_ill``` (Downloader of Image-Level Labels) and requires the argument ```--sub```. This argument selects the sub-dataset between human-verified labels ```h``` (5,655,108 images) and machine-generated labels ```m``` (8,853,429 images). An example of command is:
 ```bash
-python3 main.py downloader_ill --sub m --classes Orange --type_csv train --limit 30
+python3 download_dataset.py downloader_ill --sub m --classes Orange --type_csv train --limit 30
 ```
 The previously explained commands ```Dataset```, ```multiclasses```, ```n_threads``` and ```limit``` are available.
-The Toolkit automatically will put the dataset and the csv folder in specific folders that are renamed with a `_nl` at the end. 
+The Toolkit automatically will put the dataset and the csv folder in specific folders that are renamed with a `_nl` at the end.
 # Commands sum-up
 
 |              | downloader | visualizer | downloader_ill |                                                  |
