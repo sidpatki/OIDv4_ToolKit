@@ -1,4 +1,4 @@
-# OIDv4 ToolKit for Object Detection : Forked by Sid
+# OIDv4 ToolKit for Object Detection : ROS-YOLO Fork
 
 This forked version allows the toolkit to work in ROS workspace, and download specific classes and convert annotations to YOLO compatible format.
 
