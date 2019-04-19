@@ -14,8 +14,19 @@ pip3 install -r requirements.txt
 
 #### to download a classes in separate directories run:
 ```
-python3 download_dataset.py downloader --classes classes_to_download.txt --type_csv train --image_IsGroupOf 0
+python3 download_dataset.py downloader --classes classes_to_download.txt --type_csv train --image_IsGroupOf 0 --noLabels True
 ```
+
+#### to generate YOLO compatible annotations:
+Replace the hardcoded paths in the following file to suit your machine, and then run
+```
+python3 prepare_data.py <class name>
+```
+This will generate following files:
+- one .txt file for each .jpg having bbox detections annotated in YOLOv3 format ( x_center,y_center, w,h ) relative numbers to the image size.
+- one train.txt file containing absolute paths to all of the .jpg files in training partition.
+- one test.txt file containing absolute paths to all of the .jpg files in test partition.
+- one .data file needed by the training program
 
 
 Do you want to build your personal object detector but you don't have enough images to train your model? Have you already discovered [Open Images Dataset v4](https://storage.googleapis.com/openimages/web/index.html) that has [600](https://storage.googleapis.com/openimages/2018_04/bbox_labels_600_hierarchy_visualizer/circle.html) classes and more than 1,700,000 images ready to use? Do you want to exploit it for your projects but you don't want to download more than 500 GB of data!?
