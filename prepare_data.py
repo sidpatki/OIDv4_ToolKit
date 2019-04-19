@@ -18,38 +18,38 @@ class_id = cdf[cdf.iloc[:,1] == class_name].iloc[0,0];
 # directory where annotations will be generated
 trainDirName = "/home/spatki/rail/rail_developer/rocyolo/OIDv4_ToolKit/OID/Dataset/train/" + class_name + "/"
 
-# u = f.loc[f['LabelName'] == class_id]
-# keep_col = ['ImageID','XMin','XMax','YMin','YMax']
-#
-# new_f = u[keep_col]
-# new_f['width'] = new_f['XMax'] - new_f['XMin']
-# new_f['height'] = new_f['YMax'] - new_f['YMin']
-# new_f['x'] = (new_f['XMax'] + new_f['XMin'])/2
-# new_f['y'] = (new_f['YMax'] + new_f['YMin'])/2
-# keep_col = ['ImageID','x','y','width','height']
-# new_f_2 = new_f[keep_col]
-#
-# for root, dirs, files in os.walk(trainDirName):
-# 	for filename in files:
-#
-# 		if filename.endswith(".jpg"):
-# 			fn = filename[:-4]
-# 			nf = new_f_2.loc[new_f_2['ImageID'] == fn]
-# 			#if only training one class
-# 			nf['class_name'] = 0
-# 			#If training multiple
-# 			#nf['class_name'] = numClasses.index(nf['LabelName'])
-# 			keep_col = ['class_name','x','y','width','height']
-# 			new_nf = nf[keep_col]
-# 			# print(nf)
-# 			imgpath = trainDirName + fn + ".txt"
-# 			print(imgpath)
-#
-# 			new_nf.to_csv(imgpath, index=False, header=False, sep=' ')
-# 			#pull the x,y,width,height data, for each row with the imageid, to a variable
-# 			continue
-# 		else:
-# 			continue
+u = f.loc[f['LabelName'] == class_id]
+keep_col = ['ImageID','XMin','XMax','YMin','YMax']
+
+new_f = u[keep_col]
+new_f['width'] = new_f['XMax'] - new_f['XMin']
+new_f['height'] = new_f['YMax'] - new_f['YMin']
+new_f['x'] = (new_f['XMax'] + new_f['XMin'])/2
+new_f['y'] = (new_f['YMax'] + new_f['YMin'])/2
+keep_col = ['ImageID','x','y','width','height']
+new_f_2 = new_f[keep_col]
+
+for root, dirs, files in os.walk(trainDirName):
+	for filename in files:
+
+		if filename.endswith(".jpg"):
+			fn = filename[:-4]
+			nf = new_f_2.loc[new_f_2['ImageID'] == fn]
+			#if only training one class
+			nf['class_name'] = 0
+			#If training multiple
+			#nf['class_name'] = numClasses.index(nf['LabelName'])
+			keep_col = ['class_name','x','y','width','height']
+			new_nf = nf[keep_col]
+			# print(nf)
+			imgpath = trainDirName + fn + ".txt"
+			print(imgpath)
+
+			new_nf.to_csv(imgpath, index=False, header=False, sep=' ')
+			#pull the x,y,width,height data, for each row with the imageid, to a variable
+			continue
+		else:
+			continue
 
 ## Code to generate train.txt and test.txt files required by darknet training program
 # it lists absolute paths to all image files
