@@ -5,15 +5,16 @@ import pandas as pd
 import os
 import glob
 
-
-print("preparing data for class: ",sys.argv[1])
+class_name = str(sys.argv[1]);
+class_name_OID = class_name.replace("_"," ");
+print("preparing data for class: ",class_name_OID)
 
 # provide absolute paths to the following files on your machine
 f=pd.read_csv("/home/spatki/rail/rail_developer/rocyolo/OIDv4_ToolKit/OID/csv_folder/train-annotations-bbox.csv")
 cdf=pd.read_csv("/home/spatki/rail/rail_developer/rocyolo/OIDv4_ToolKit/OID/csv_folder/class-descriptions-boxable.csv")
 
-class_name = sys.argv[1];
-class_id = cdf[cdf.iloc[:,1] == class_name].iloc[0,0];
+
+class_id = cdf[cdf.iloc[:,1] == class_name_OID].iloc[0,0];
 
 # directory where annotations will be generated
 trainDirName = "/home/spatki/rail/rail_developer/rocyolo/OIDv4_ToolKit/OID/Dataset/train/" + class_name + "/"
@@ -77,15 +78,15 @@ for pathAndFilename in glob.iglob(os.path.join(trainDirName, "*.jpg")):
 file_names = open(trainDirName+class_name+".names", 'w')
 file_names.write(class_name);
 
-#### generate the .names file
+#### generate the .data file
 file_data = open(trainDirName+class_name+".data", 'w')
 file_data.write("classes = 1\n")
 file_data.write("train = "+trainDirName+"train.txt\n")
 file_data.write("valid = "+trainDirName+"test.txt\n")
 file_data.write("names = "+trainDirName+class_name+".names\n")
+file_data.write("backup = "+trainDirName+"../../../../../trained_weights/"+class_name+"\n")
 try:
     # Create target Directory
     os.mkdir(trainDirName+"../../../../../trained_weights/"+class_name)
 except FileExistsError:
     print("Directory already exists")
-file_data.write("backup = "+trainDirName+"../../../../../trained_weights/"+class_name+"\n")
