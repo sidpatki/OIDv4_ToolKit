@@ -1,1 +1,8 @@
-Ball
+Snake
+Pen
+Building
+Footwear
+Knife
+Laptop
+Bicycle
+Hair dryer

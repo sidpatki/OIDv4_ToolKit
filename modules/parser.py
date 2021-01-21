@@ -20,7 +20,7 @@ def parser_arguments():
                         metavar="'train' or 'validation' or 'test' or 'all'",
                         help='From what csv search the images')
 
-    parser.add_argument('--sub', required=False, choices=['h', 'm'], 
+    parser.add_argument('--sub', required=False, choices=['h', 'm'],
                         metavar="Subset of human verified images or machine generated (h or m)",
                         help='Download from the human verified dataset or from the machine generated one.')
 
@@ -53,5 +53,7 @@ def parser_arguments():
     parser.add_argument('--limit', required=False, type=int, default=None,
                         metavar="integer number",
                         help='Optional limit on number of images to download')
+
+    
 
     return parser.parse_args()

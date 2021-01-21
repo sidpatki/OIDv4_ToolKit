@@ -14,7 +14,7 @@ pip3 install -r requirements.txt
 
 #### to download a classes in separate directories run:
 ```
-python3 download_dataset.py downloader --classes classes_to_download.txt --type_csv train --image_IsGroupOf 0 --noLabels True
+python3 download_dataset.py downloader --classes classes_to_download.txt --type_csv train --image_IsGroupOf 0 --noLabels
 ```
 
 #### to generate YOLO compatible annotations:

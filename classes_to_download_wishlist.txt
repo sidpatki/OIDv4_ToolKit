@@ -1,0 +1,11 @@
+Window
+Ladder
+Book
+Refrigerator
+Whiteboard
+Stool
+Desk
+Power plugs and sockets
+Adhesive tape
+Printer
+Bowl
